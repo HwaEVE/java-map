@@ -152,15 +152,5 @@ public class DataStructureFunction {
 //
 //    List<Integer> findPassedStudents(List<Integer> numbers) {
 //        List<Integer> passscore = new ArrayList<>();
-//
-//
-//
-//
-//
-//
 //    }
-
-
-
-
 }
