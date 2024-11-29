@@ -42,13 +42,10 @@ public class MapTest {
         );
 // 아래에 코드 추가
         HashMap<String, Integer> nameCountMap = new HashMap<>();
-        for (String name : nameList) {
+        for (String name : nameList)
             if (nameCountMap.containsKey(name)) {
                 nameCountMap.put(name, nameCountMap.get(name) + 1);
-            } else {
-                nameCountMap.put(name, 1);
-            }
-        }
+            } else nameCountMap.put(name, 1);
 
         // 아래 테스트를 통과해야 합니다
         assertThat(nameCountMap).containsEntry("추민영", 2)
@@ -131,5 +128,53 @@ public class MapTest {
             System.out.println("가격: " + Product.get("가격"));
             System.out.println("카테고리: " + Product.get("카테고리"));
         }
+
+    }
+
+    @Test
+    void myContainsTest() {
+        ArrayList<String> names = new ArrayList<>();
+        names.add("박효신");
+        names.add("이지은");
+        names.add("하현우");
+
+        boolean 하현우존재여부 = myContains(names, "하현우");
+        boolean 잔나비존재여부 = myContains(names, "잔나비");
+
+        assertThat(하현우존재여부).isTrue();
+        assertThat(잔나비존재여부).isFalse();
+    }
+
+    public static boolean myContains(ArrayList<String> list, String target) {
+        for (String item : list) {
+            if (item.equals(target)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    @Test
+    void getCommonElementsTest() {
+        List<Integer> firstList = List.of(1, 2, 3);
+        List<Integer> secondList = List.of(2, 3, 4);
+
+        List<Integer> commonElements = getCommonElements(firstList, secondList);
+
+        assertThat(commonElements)
+                .containsExactlyInAnyOrder(2, 3);
+        System.out.println("공통요소 = " + commonElements);
+    }
+
+    public static List<Integer> getCommonElements(List<Integer> list1, List<Integer> list2) {
+        List<Integer> commonElements = new ArrayList<>();
+
+        for (Integer elements : list1) {
+            if (list2.contains(elements)) {
+                commonElements.add(elements);
+            }
+        }
+        return commonElements;
     }
 }
